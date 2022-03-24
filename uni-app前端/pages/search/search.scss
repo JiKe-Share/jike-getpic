@@ -1,0 +1,19 @@
+.class-posts{
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 15rpx;
+	background-color: #ffffff;
+	.class-post{
+		width: 32%;
+		display: inline-block;
+		max-height: 380rpx;
+		margin-bottom: 15rpx;
+		overflow: hidden;
+		border-radius: 15rpx;
+	}
+}
+.bg-white{
+	padding: 100rpx 0rpx;
+}

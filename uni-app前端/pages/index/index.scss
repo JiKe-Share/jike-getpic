@@ -1,0 +1,209 @@
+page{
+	text-align: center;
+}
+.top-image{
+	border-radius:0rpx 0rpx 25rpx 25rpx;
+	overflow: hidden;
+	image{
+		width: 100%;
+		max-height: 550rpx;
+		min-height: 450rpx;
+	}
+	
+}
+.body-image{
+	width: 100%;
+	margin-top: -130rpx;
+	position: relative;
+	z-index: 1;
+	border-radius: 50rpx 50rpx 0rpx 0rpx;
+	overflow: hidden;
+	.img-search{
+		padding-top: 20rpx;
+		background-color: #ffffffdd;
+		height: 130rpx;
+		text-align: center;
+		.searchs{
+			width: 90%;
+			height: 100rpx;
+			margin: auto;
+			position: relative;
+			.inputSearch{
+				text-align: left;
+				padding-left: 25rpx;
+				border: 6rpx solid #000000;
+				border-radius: 50rpx;
+				height: 100%;
+			}
+			.btnSearch{
+				padding: 0rpx;
+				color: #ffffff;
+				width: 150rpx;
+				height: 75rpx;
+				font-size: 35rpx;
+				line-height: 75rpx;
+				position: absolute;
+				top: 13rpx;
+				right: 15rpx;
+				border-radius: 50rpx;
+				z-index: 99;
+			}
+		}
+	}
+	.tag-array{
+		width: 100%;
+		margin: auto;
+		background-color: #ffffff;
+		.tag-title{
+			width: 92%;
+			height: 70rpx;
+			text-align: center;
+			margin: auto;
+			border-bottom: 1rpx solid #cccccc;
+			padding-top: 10rpx;
+			
+		}
+		.recommend-tags{
+			width: 92%;
+			margin: auto;
+			padding: 20rpx 20rpx 0rpx;
+			.scroll-list-tags{
+				width: 110rpx;
+				height: 110rpx;
+				position: relative;
+				image{
+					width: 100%;
+				}
+				.tag-name{
+					position: absolute;
+					bottom: 0rpx;
+					height: 40rpx;
+					width: 100%;
+					background-color: #00000099;
+					text-align: center;
+				}
+				margin-right: 20rpx;
+				border-radius: 100%;
+				overflow: hidden;
+				border: 5rpx solid #ffffff;
+			}
+		}
+	}
+	.index-class{
+		width: 100%;
+		background-color: #ffffff;
+		text-align: center;
+		.class-list{
+			width: 92%;
+			margin: auto;
+			padding-bottom: 15rpx;
+			.cla-title{
+				text-align: left;
+				width: 100%;
+				height: 60rpx;
+				image{
+					display: inline-block;
+					width: 50rpx;
+					vertical-align: middle;
+				}
+				text{
+					font-size: 35rpx;
+					font-weight: 710;
+					vertical-align: middle;
+					margin-left: 10rpx;
+				}
+				.go-class{
+					color: #333333;
+					float: right;
+					display: inline-block;
+					height: 100%;
+					line-height: 60rpx;
+					vertical-align: middle;
+					.cuIcon-right{
+						font-size: 30rpx;
+						vertical-align: middle;
+						margin-left: 0rpx;
+						display: inline-block;
+						margin-top: -6rpx;
+					}
+				}
+			}
+			.cal-posts{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				.img-post{
+					width: 32%;
+					display: inline-block;
+					max-height: 380rpx;
+					margin-bottom: 10rpx;
+					overflow: hidden;
+					border-radius: 15rpx;
+				}
+			}
+		}
+	}
+}
+
+
+.scroll-list {
+	@include flex(column);
+
+	&__goods-item {
+		margin-right: 20px;
+
+		&__image {
+			width: 60px;
+			height: 60px;
+			border-radius: 4px;
+		}
+
+		&__text {
+			color: #f56c6c;
+			text-align: center;
+			font-size: 12px;
+			margin-top: 5px;
+		}
+	}
+
+	&__show-more {
+		background-color: #fff0f0;
+		border-radius: 3px;
+		padding: 3px 6px;
+		@include flex(column);
+		align-items: center;
+
+		&__text {
+			font-size: 12px;
+			width: 12px;
+			color: #f56c6c;
+			line-height: 16px;
+		}
+	}
+
+	&__line {
+		@include flex;
+		margin-top: 10px;
+
+		&__item {
+			margin-right: 15px;
+
+			&__image {
+				width: 61px;
+				height: 48px;
+			}
+
+			&__text {
+				margin-top: 5px;
+				color: $u-content-color;
+				font-size: 12px;
+				text-align: center;
+			}
+
+			&--no-margin-right {
+				margin-right: 0;
+			}
+		}
+	}
+}

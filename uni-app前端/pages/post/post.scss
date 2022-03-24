@@ -1,0 +1,45 @@
+page{
+	background-color: #ffffff;
+	text-align: center;
+}
+.control{
+	width: 96%;
+	position: fixed;
+	z-index: 99999;
+	bottom: calc(30rpx + env(safe-area-inset-bottom));
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 15rpx;
+	background-color: #ffffff66;
+	border-radius: 15rpx;
+	display: flex;
+	justify-content: space-around;
+	.contorl-v{
+		border-radius: 10rpx;
+		text-align: center;
+		line-height: 50rpx;
+		.u-icon{
+			display: inline-flex;
+			margin: auto;
+			width: auto;
+			height: 100%;
+		}
+		padding: 10rpx;
+	}
+	.control-left{
+		min-width: 20%;
+		max-width: 30%;
+		font-size: 30rpx;
+		line-height: 50rpx;
+	}
+	.control-center{
+		margin: 0 10rpx;
+		max-width: 90%;
+	}
+	.control-right{
+		min-width: 13%;
+		max-width: 13%;
+	}
+}
+
+  

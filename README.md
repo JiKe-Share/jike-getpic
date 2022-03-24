@@ -1,2 +1,1 @@
-# jike-getpic-api
-极客取图api
+# 即刻取图API

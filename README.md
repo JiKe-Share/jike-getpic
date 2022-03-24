@@ -1,7 +1,7 @@
-# 即刻取图api
+# 即刻取图小程序
 
 #### 介绍
-即可取图API由极客分享（ https://www.wxshares.com ）开发的一款开源WordPress主题，前端配合即刻取图小程序【微信/抖音双端】，专为壁纸、头像、表情流量变现开发，遵循GPL V2.0开源协议发布。
+即可取图小程序由极客分享（ https://www.wxshares.com ）开发的一款开源微信/抖音双端小程序，后台用wordpress插件开发，前端用uni-app开发，专为壁纸、头像、表情流量变现开发，遵循GPL V2.0开源协议发布。
 
 #### 项目截图（演示）
 ![截图](https://cdn.wxshares.com/wp-content/uploads/2022/03/wxshares202203242039481648154388-haibaojikebox.jpg)

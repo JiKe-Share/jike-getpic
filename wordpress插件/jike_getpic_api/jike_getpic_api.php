@@ -1,6 +1,6 @@
 <?php 
 /*
-Plugin Name: jike_applet_api
+Plugin Name: jike_getpic_api
 Plugin URI: https://www.wxshares.com/
 Description: 由<a href="https://www.wxshares.com/" taraget="_blank">极客分享</a>开发的小程序api接口插件，用于对接极客分享开发的前端小程序
 Version: 1.0.0
@@ -29,12 +29,6 @@ function jike_applet_api_stop(){
 
 $init = new JikeApi_init();
 $init->init();
-
-// require_once PLUGIN_PATH . 'admin/jike-api-uitls.php';
-// $jikeapiuitls = new JikeApiUitls();
-// $aaaa = $jikeapiuitls ->get_tags_list();
-// var_dump($aaaa);
-// die();
 
 
 

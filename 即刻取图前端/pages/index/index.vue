@@ -8,7 +8,7 @@
 				<view class="searchs">
 					<input v-model="Search" class="inputSearch" :placeholder="searchPlaceholder">
 					<button class="cu-btn btnSearch" size="mini" :style="{backgroundColor:xcxColor}"
-						@click="gosearch">搜索</button>
+						@click.stop="gosearch">搜索</button>
 					</input>
 				</view>
 			</view>

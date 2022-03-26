@@ -146,7 +146,7 @@ export default {
 						uni.downloadFile({
 							url: url,
 							success: function(ress) {
-								uni.hideToast();
+								// uni.hideToast();
 								//图片保存到本地
 								uni.saveImageToPhotosAlbum({
 									filePath: ress.tempFilePath,

@@ -8,8 +8,8 @@
 				</u--image>
 			</view>
 			<view v-else>
-				<u-swiper :list="images" :height="imgH" imgMode="widthFix" previousMargin="30" nextMargin="30" circular
-					:autoplay="false" radius="5" bgColor="#ffffff">
+				<u-swiper :indicator="true" :list="images" :height="imgH" :indicatorActiveColor="xcxColor" imgMode="widthFix" 
+					:autoplay="true" interval="4000" radius="5" :circular="true" bgColor="#ffffff">
 				</u-swiper>
 			</view>
 		</view>
@@ -150,10 +150,7 @@
 							.then(() => that.videoAd.show())
 							.catch(err => {
 								console.log('激励视频 广告显示失败')
-								uni.showToast({
-									icon: 'none',
-									title: "暂时无广告,请稍后再试"
-								})
+								that.savearrimg(that.images)
 							})
 					})
 				} else {
@@ -180,10 +177,10 @@
 						}
 					})
 					that.videoAd.onError((err) => {
-						uni.showToast({
-							icon: 'none',
-							title: "暂时无广告，请稍后再试"
-						})
+						// uni.showToast({
+						// 	icon: 'none',
+						// 	title: "暂时无广告，请稍后再试"
+						// })
 					})
 				} else {
 					that.videoAd = ''

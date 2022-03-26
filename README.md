@@ -13,6 +13,11 @@ https://www.wxshares.com/995.html
 <img src="https://cdn.wxshares.com/wp-content/uploads/2022/03/wxshares202203251610071648224607-wsx0jikebox.jpg" width = "300" align=center />
 <img src="https://cdn.wxshares.com/wp-content/uploads/2022/03/wxshares202203251610071648224607-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220326000600jikebox.jpg" width = "300" align=center />
 
+#### 前后端开源地址
+gitee：https://gitee.com/jikebox/jike-getpic
+
+github：https://github.com/JiKe-Share/jike-getpic
+
 #### 进群交流
  <img src="https://aiphoto-1251399177.cos.ap-guangzhou.myqcloud.com/jikedoc/grwx.png" width = "300" height = "300" alt="加微信进群" align=center />
 

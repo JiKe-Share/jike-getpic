@@ -20,7 +20,6 @@
 	.slide-in-bottom {
 		animation: slide-in-bottom 1.2s ease
 	}
-
 	@keyframes slide-in-bottom {
 		0% {
 			transform: translate(-50%, 1000rpx);

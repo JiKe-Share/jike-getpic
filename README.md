@@ -9,7 +9,7 @@
 
 4、修复个别OpenSSL错误问题
 
-[→更新具体细节与教程](https://www.wxshares.com/1230.html)https://www.wxshares.com/1230.html
+[→更新具体细节与教程](https://www.wxshares.com/1230.html)  https://www.wxshares.com/1230.html
 
 
 #### 介绍

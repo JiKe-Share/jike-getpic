@@ -2,8 +2,11 @@
 
 #### 20220617更新
 1、更新动态壁纸支持
+
 2、更新快手端支持
+
 3、修复图标加载不出的bug
+
 4、修复个别OpenSSL错误问题
 
 [→更新具体细节与教程](https://www.wxshares.com/1230.html)https://www.wxshares.com/1230.html

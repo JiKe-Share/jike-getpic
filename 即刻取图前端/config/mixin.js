@@ -9,6 +9,10 @@ export default {
 			// #ifdef MP-TOUTIAO
 			setapi: '/dyset/',
 			// #endif
+			// #ifdef MP-KUAISHOU
+			setapi: '/ksset/',
+			// #endif
+			arrsy:0
 		}
 	},
 	onShow() {
@@ -19,7 +23,17 @@ export default {
 			menus: ['shareAppMessage', 'shareTimeline'],
 		})
 		//#endif
+		
 	},
+	onload(){
+		this.arrsy = 0;
+	},
+	onShareAppMessage(res) {
+	    return {
+	      title: that.shareTitle,
+	      imageUrl: that.shareImage,
+	    }
+	  },
 	// 微信分享盆友圈|收藏
 	//#ifdef MP-WEIXIN
 	onShareTimeline() {
@@ -105,6 +119,9 @@ export default {
 					// #ifdef MP-TOUTIAO
 					that.$refs.showImg.show(e['wlapp-image']['url']);
 					// #endif
+					// #ifdef MP-KUAISHOU
+					that.$refs.showImg.show(e['wlapp-image']['url']);
+					// #endif
 					break;
 				default:
 					break;
@@ -122,21 +139,42 @@ export default {
 			// #ifdef MP-TOUTIAO
 			that.$refs.showImg.show(that.wxewmTmage);
 			// #endif
+			// #ifdef MP-KUAISHOU
+			that.$refs.showImg.show(that.wxewmTmage);
+			// #endif
 		},
 		savearrimg(arr) {
+			var that = this;
 			if (arr.length > 1) {
-				for (let i = 0; i < arr.length; i++) {
-					this.saveimg(arr[i]);
+				that.saveimg(arr[that.arrsy],function(){
+					if(that.arrsy>=arr.length-1){
+						uni.showToast({
+							title: '保存成功',
+							icon: 'success',
+							duration: 2000
+						})
+						return true;
+					}
+					else{
+						that.arrsy++;
+						console.log(that.arrsy)
+						that.savearrimg(arr);
+					}
+				})
 				}
-			} else {
-				this.saveimg(arr[0])
+				 else {
+				that.saveimg(arr[0])
 			}
+			
 		},
 		saveimg(url, suc = Nullfun, fa = Nullfun) {
 			console.log(url)
 			if (url.indexOf("http") != -1) {
 				uni.authorize({
 					// #ifdef MP-WEIXIN
+					scope: "scope.writePhotosAlbum",
+					// #endif
+					// #ifdef MP-KUAISHOU
 					scope: "scope.writePhotosAlbum",
 					// #endif
 					// #ifdef MP-TOUTIAO
@@ -151,21 +189,26 @@ export default {
 								uni.saveImageToPhotosAlbum({
 									filePath: ress.tempFilePath,
 									success: function(data) {
+										suc();
+										// #ifndef MP-KUAISHOU
 										uni.showToast({
 											title: '保存成功',
 											icon: 'success',
 											duration: 2000
 										})
-										suc();
+										// #endif
+										
 									}
 								})
 							},
 							fail: function(err) {
 								console.log(err.errMsg)
 								fa();
+								// #ifndef MP-KUAISHOU
 								uni.showToast({
 									title: '下载失败',
 								})
+								// #endif
 							}
 						})
 					},
@@ -192,6 +235,9 @@ export default {
 			} else {
 				uni.authorize({
 					// #ifdef MP-WEIXIN
+					scope: "scope.writePhotosAlbum",
+					// #endif
+					// #ifdef MP-KUAISHOU
 					scope: "scope.writePhotosAlbum",
 					// #endif
 					// #ifdef MP-TOUTIAO
@@ -234,6 +280,78 @@ export default {
 				})
 			}
 		},
+		savevideo(videourl){
+			uni.showLoading({
+			       title: "正在保存"
+			 }), uni.authorize({
+			    // #ifdef MP-WEIXIN
+			    scope: "scope.writePhotosAlbum",
+			    // #endif
+			    // #ifdef MP-KUAISHOU
+			    scope: "scope.writePhotosAlbum",
+			    // #endif
+			    // #ifdef MP-TOUTIAO
+			    scope: "scope.album",
+			    // #endif
+			    success: function() {
+					uni.downloadFile({
+					    url:videourl,//文件路径
+					    success: (res) => {
+							console.log(res)
+							uni.hideLoading()
+					    const { statusCode, tempFilePath } = res
+					    uni.saveVideoToPhotosAlbum({
+					        filePath: tempFilePath,
+					        success: function (errMsg) {
+							uni.showToast({
+								  icon: "success",
+								  title: "保存成功"
+								});
+					        },
+					        fail:(errMsg)=>{
+								uni.showToast({
+					                icon: "error",
+					                title: "保存失败"
+					            });
+					        },
+					       complete:(errMsg)=>{
+									console.log(errMsg)          
+								 }
+					        });         
+					  },
+						fail:(errMsg)=>{
+							uni.hideLoading()
+							  uni.showToast({
+							        icon: "error",
+							        title: "下载失败"
+							     });
+						},
+					    })
+					},
+					fail: function(err) {
+						uni.hideLoading()
+						if (err.errmsg = 'authorize:fail auth deny') {
+							uni.showModal({
+								title: '提示',
+								content: '您拒绝了授权保存图片，需要重新授权',
+								confirmText: '授权',
+								cancelText: '取消',
+								success(res) {
+									if (res.confirm) {
+										uni.openSetting({
+											success(res) {
+												console.log(res.authSetting)
+											}
+										})
+									} else if (res.cancel) {
+										console.log('用户点击取消')
+									}
+								}
+							})
+						};
+					}
+					})
+		},
 		getconfig(s = Nullfun) {
 			let that = this;
 			let ret = this.$get(that.setapi + 'config', {}).then((ret) => {
@@ -255,7 +373,6 @@ export default {
 		},
 		goback() {
 			const pages = getCurrentPages();
-
 			if (pages.length === 2) {
 				uni.navigateBack({
 					delta: 1

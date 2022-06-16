@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u--image": "/uni_modules/uview-ui/components/u--image/u--image",
+    "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
+    "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "pendant": "/components/Pendant/Pendant",
+    "u-loading-page": "/uni_modules/uview-ui/components/u-loading-page/u-loading-page"
+  }
+}

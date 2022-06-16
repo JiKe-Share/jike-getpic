@@ -1,0 +1,1 @@
+<view><block wx:if="{{Banner}}"><view class="ad-class" style="{{('margin:'+marginTop+' 0 '+marginBottom+';')}}"><ad-custom style="{{('width:'+adw+'!important;')}}" vue-id="2664501c-1" unit-id="{{Banner}}" bind:__l="__l"></ad-custom></view></block></view>

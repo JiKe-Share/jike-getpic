@@ -118,6 +118,9 @@
 				// #ifdef MP-TOUTIAO
 				let pt = 'dy'
 				// #endif
+				// #ifdef MP-KUAISHOU
+				let pt = 'ks'
+				// #endif
 				if (cid) {
 					that.page = 0;
 				}
@@ -150,6 +153,9 @@
 				// #endif
 				// #ifdef MP-TOUTIAO
 				let pt = 'dy'
+				// #endif
+				// #ifdef MP-KUAISHOU
+				let pt = 'ks'
 				// #endif
 				let ret = await this.$get('/posts/tagspost', {
 					data: {

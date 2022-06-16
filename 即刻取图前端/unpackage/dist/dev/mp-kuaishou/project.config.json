@@ -1,0 +1,25 @@
+{
+  "description": "项目配置文件。",
+  "libVersion": "0.6.0",
+  "appid": "ks704813342385170271",
+  "projectname": "即刻取图",
+  "condition": {
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "name": "首页",
+          "query": "",
+          "id": 0,
+          "pathName": "pages/index/index"
+        },
+        {
+          "name": "测试页",
+          "query": "key=文字控",
+          "id": 1,
+          "pathName": "pages/search/search"
+        }
+      ]
+    }
+  }
+}

@@ -79,5 +79,8 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "mp-kuaishou" : {
+        "appid" : "ks704813342385170271"
+    }
 }

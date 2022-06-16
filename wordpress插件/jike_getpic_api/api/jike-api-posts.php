@@ -31,6 +31,20 @@ class JikeApiPosts extends JikeApiController
 				]
 			]
 		]);
+		//获取文章数据
+		register_rest_route($this->namespace, '/' . $this->module . '/postcs', [
+			[
+			    'methods' => 'GET',
+				'callback' => [$this, 'get_postcs'],
+				'args' => [
+					'id' => [
+						'default' => 0,
+						'description' => '文章ID',
+						'type' => 'integer',
+					],
+				]
+			]
+		]);
         // 按照分类获取文章数据
         register_rest_route($this->namespace, '/' . $this->module . '/classpost', [
 		[
@@ -123,11 +137,13 @@ class JikeApiPosts extends JikeApiController
 	 */
 	public function get_post($request)
 	{
-		$id = $this->get_parame($request,'id',0);
+	$id = $this->get_parame($request,'id',0);
 		$data = get_post($id,'ARRAY_A');
 		$rdata = array();
 		foreach ($data as $k=>$v){
 		    $imginfo = $this->jike_get_post_images($data['post_content']);
+		    $videoinfo = $this->jike_get_post_video($data['post_content']);
+		   
 		    $postcover = $this->jike_get_post_imageX($data['ID']); 
 		    if($postcover){
                   $rdata['cover'] =  $postcover;
@@ -140,6 +156,37 @@ class JikeApiPosts extends JikeApiController
 		    $rdata['dimgs'] =  $imginfo[2];
 		    $rdata['date'] = $data['post_date'];
 		    $rdata['images']=$imginfo[1];
+		    $rdata['video']=$videoinfo;
+		    $rdata['tags'] = get_the_tags($data['ID'])[0];
+		    $rdata['tags']->cover = z_taxonomy_image_url($rdata['tags']->term_id);
+		}
+		return $this->return_success($rdata);
+	}
+	/**
+	 * 获取文章内容
+	 */
+	public function get_postcs($request)
+	{
+		$id = $this->get_parame($request,'id',0);
+		$data = get_post($id,'ARRAY_A');
+		$rdata = array();
+		foreach ($data as $k=>$v){
+		    $imginfo = $this->jike_get_post_images($data['post_content']);
+		    $videoinfo = $this->jike_get_post_video($data['post_content']);
+		   
+		    $postcover = $this->jike_get_post_imageX($data['ID']); 
+		    if($postcover){
+                  $rdata['cover'] =  $postcover;
+            }
+            else{
+                $rdata['cover'] =  $imginfo[1][0];
+            }
+		    $rdata['id'] = $data['ID'];
+		    $rdata['title'] = $data['post_title'];
+		    $rdata['dimgs'] =  $imginfo[2];
+		    $rdata['date'] = $data['post_date'];
+		    $rdata['images']=$imginfo[1];
+		    $rdata['video']=$videoinfo;
 		    $rdata['tags'] = get_the_tags($data['ID'])[0];
 		    $rdata['tags']->cover = z_taxonomy_image_url($rdata['tags']->term_id);
 		}

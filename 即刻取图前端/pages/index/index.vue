@@ -6,10 +6,10 @@
 		<view class="body-image">
 			<view class="img-search">
 				<view class="searchs">
-					<input v-model="Search" class="inputSearch" :placeholder="searchPlaceholder">
-					<button class="cu-btn btnSearch" size="mini" :style="{backgroundColor:xcxColor}"
-						@click.stop="gosearch">搜索</button>
+					<input v-model="Search" class="inputSearch" confirm-type="search" @confirm="gosearch" :placeholder="searchPlaceholder">
 					</input>
+					<button class="cu-btn btnSearch" size="mini" :style="{backgroundColor:xcxColor}"
+					@click.stop="gosearch">搜索</button>
 				</view>
 			</view>
 			<view class="tag-array u-demo-block">

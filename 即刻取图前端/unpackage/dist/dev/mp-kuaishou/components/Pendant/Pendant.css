@@ -1,0 +1,20 @@
+
+.right-bottom {
+	position: fixed;
+	right: 0rpx;
+	bottom: 250rpx;
+	width: 100rpx;
+	border-radius: 20rpx 0 0 20rpx;
+	background-color: #ffffff;
+	z-index: 99;
+	text-align: center;
+	opacity: .8;
+}
+.wlapp-item {
+	width: 80%;
+	margin: 10rpx auto;
+	border-radius: 15rpx;
+	overflow: hidden;
+	height: auto;
+}
+

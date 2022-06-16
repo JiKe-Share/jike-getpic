@@ -13,8 +13,11 @@ $topclass = $jikeapiuitls ->get_top_class_list();
 $tags = $jikeapiuitls ->get_tags_list();
 $prefix = 'jike-api';
 
-$tcontent = file_get_contents(A_URL.'kftool/jikepic/top.php');
-$bcontent = file_get_contents(A_URL.'kftool/jikepic/bottom.php');
+$arrContextOptions=array( "ssl"=>array( "verify_peer"=>false, "verify_peer_name"=>false, )); 
+
+
+$tcontent = file_get_contents(A_URL.'kftool/jikepic/top.php',false,stream_context_create($arrContextOptions));
+$bcontent = file_get_contents(A_URL.'kftool/jikepic/bottom.php',false,stream_context_create($arrContextOptions));
 CSF::createOptions( $prefix, array(
   'framework_title' => '极客API <small>by CYC</small>',
   'menu_title' => '极客API',
@@ -43,7 +46,7 @@ CSF::createSection( $prefix, array(
 CSF::createSection( $prefix, array(
   'parent'      => 'basic-controls',
   'title'       => '微信小程序',
-  'icon'        => 'fa fa-weixin',
+  'icon'        => 'fas fa-tag',
   'description' => '微信小程序基本设置，这里控制微信端的一些信息',
   'fields'      => array(
      array(
@@ -191,7 +194,7 @@ CSF::createSection( $prefix, array(
 CSF::createSection( $prefix, array(
   'parent'      => 'basic-controls',
   'title'       => '抖音小程序',
-  'icon'        => 'fa fa-video-camera',
+  'icon'        => 'fa fa-video',
   'description' => '抖音小程序基本设置，这里控制抖音端的一些信息',
   'fields'      => array(
     array(
@@ -331,6 +334,150 @@ CSF::createSection( $prefix, array(
       'title' => '激励视频广告ID',
       'after'    => '<p>抖音激励广告ID，填0或留空将不显示</p>',
     ),
+    )
+));
+CSF::createSection( $prefix, array(
+  'parent'      => 'basic-controls',
+  'title'       => '快手小程序',
+  'icon'        => 'fa fa-video',
+  'description' => '快手小程序基本设置，这里控制快手端的一些信息',
+  'fields'      => array(
+    array(
+      'id'    => 'ks-title',
+      'type'  => 'text',
+      'title' => '小程序名称',
+      'after'    => '<p>小程序名称</p>',
+    ),
+    array(
+      'id'    => 'ks-appid',
+      'type'  => 'text',
+      'title' => 'APPID',
+      'after'    => '<p>快手小程序appid</p>',
+    ),
+    array(
+      'id'      => 'ks-secret',
+      'type'    => 'text',
+      'title'   => 'Appsecret',
+      'after'    => '<p>快手小程序Appsecret</p>',
+    ),
+     array(
+      'id'          => 'ks-class-show',
+      'type'        => 'select',
+      'title'       => '显示的分类',
+      'chosen'      => true,
+      'multiple'    => true,
+      'sortable'    => true,
+      'placeholder' => '点击选择分类',
+      'options'     => $topclass,
+      'default'     => array('1')
+    ),
+    array(
+      'id'     => 'kspro-wlapp',
+      'type'   => 'group',
+      'title'  => '外链推荐',
+      'after'    => '<p>快手的业务域名添加无需验证，可以多增加H5链接扩展功能</p>',
+      'subtitle'  => '这会显示在程序右边侧栏中，不要添加太多，会超高',
+      'accordion_title_prefix' => '',
+      'fields' => array(
+        array(
+          'id'    => 'wlapp-name',
+          'type'  => 'text',
+          'title' => '外链名称',
+          'subtitle'  => '这里用于你自己区分，前端就显示一图标',
+        ),
+        array(
+          'id'    => 'wlapp-icon',
+          'type'  => 'media',
+          'title' => '图标',
+          'after'    => '<p>显示在前端的正方图标</p>',
+        ), 
+        array(
+          'id'    => 'wlapp-show',
+          'type'  => 'switcher',
+          'title' => '是否显示',
+          'text_on'  => '显示',
+          'text_off' => '隐藏',
+        ),
+        array(
+            'id'         => 'wlapp-type',
+            'type'       => 'button_set',
+            'title'      => '外链类型',
+            'options'    => array(
+                '1'  => '其它小程序',
+                '3'  => '打开文档',
+                '4' => 'h5链接',
+                '5' => '弹出图片',
+            ),
+            'after' => '',
+            
+        ),
+        array(
+          'id'    => 'wlapp-appid',
+          'type'  => 'text',
+          'title' => '其它小程序的appid',
+          'subtitle'  => '填写其它小程序的appid',
+        ),
+        array(
+          'id'    => 'wlapp-url',
+          'type'  => 'text',
+          'title' => 'URL链接',
+          'after'    => '跳转其它小程序时，这里可以填写打开小程序的某路径如:pages/jike/jike,留空首页，打开文档时这里填写文档url',
+        ),
+         array(
+      'id'    => 'wlapp-image',
+      'type'  => 'media',
+      'title' => '弹出的图片',
+      'after'    => '<p>这张图片将以框架方式弹出，在抖音端拥有“保存图片”与“取消按钮”</p>',
+    ), 
+      ),
+      'default' => array(
+        array(
+          'wlapp-name'     => '即刻取图',
+          'wlapp-icon' => array(
+                 'alt'=> "",
+                'description'=> "",
+                'height'=> "500",
+                'id'=> "38",
+                'thumbnail'=> "https://jikepiccdn.jikebox.cn/wp-content/uploads/2022/03/kjfldsjmf-150x150.jpg",
+                'title'=>"fe063d3d6357d259c56609513e35ebd5",
+                'url'=> "https://jikepiccdn.jikebox.cn/wp-content/uploads/2022/03/kjfldsjmf.jpg",
+                'width'=> "500"
+              ),
+          'wlapp-show' => true,
+          'wlapp-type' => '1',
+          'wlapp-appid' => 'ks704813342385170271',
+          'wlapp-url' => '',
+          'wlapp-image' => '',
+        ),
+         
+      )
+    ),
+    array(
+          'id'    => 'ks-vague',
+          'type'  => 'switcher',
+          'title' => '开启模糊图下载',
+          'text_on'  => '开启',
+          'text_off' => '隐藏',
+          'label'       => '开启后，用户可以不看广告下载模糊图，看广告下载高清图',
+    ),
+    // array(
+    //   'id'    => 'ks-insetid',
+    //   'type'  => 'text',
+    //   'title' => '插屏广告ID',
+    //   'after'    => '<p>抖音插屏广告ID，填0或留空将不显示</p>',
+    // ),
+    // array(
+    //   'id'    => 'ks-banner',
+    //   'type'  => 'text',
+    //   'title' => 'banner广告ID',
+    //   'after'    => '<p>抖音banner广告ID，填0或留空将不显示</p>',
+    // ),
+    // array(
+    //   'id'    => 'ks-rewarded',
+    //   'type'  => 'text',
+    //   'title' => '激励视频广告ID',
+    //   'after'    => '<p>抖音激励广告ID，填0或留空将不显示</p>',
+    // ),
     )
 ));
 CSF::createSection( $prefix, array(

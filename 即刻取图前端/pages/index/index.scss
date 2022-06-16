@@ -9,11 +9,17 @@ page{
 		max-height: 550rpx;
 		min-height: 450rpx;
 	}
-	
+	// #ifdef MP-KUAISHOU
+	height: 500rpx;
+	 // #endif
 }
 .body-image{
 	width: 100%;
 	margin-top: -130rpx;
+	
+	 // #ifdef MP-KUAISHOU
+	margin-top: -200rpx;
+	 // #endif
 	position: relative;
 	z-index: 1;
 	border-radius: 50rpx 50rpx 0rpx 0rpx;
@@ -23,17 +29,20 @@ page{
 		background-color: #ffffffdd;
 		height: 130rpx;
 		text-align: center;
+		
 		.searchs{
 			width: 90%;
 			height: 100rpx;
 			margin: auto;
 			position: relative;
+			border: 6rpx solid #000000;
+			border-radius: 50rpx;
 			.inputSearch{
 				text-align: left;
 				padding-left: 25rpx;
-				border: 6rpx solid #000000;
-				border-radius: 50rpx;
 				height: 100%;
+				width: 75%;
+				
 			}
 			.btnSearch{
 				padding: 0rpx;
@@ -43,7 +52,7 @@ page{
 				font-size: 35rpx;
 				line-height: 75rpx;
 				position: absolute;
-				top: 13rpx;
+				top: 8rpx;
 				right: 15rpx;
 				border-radius: 50rpx;
 				z-index: 99;

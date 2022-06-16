@@ -6,10 +6,12 @@
 				<u--image :src="item['wlapp-icon']['url']" :showLoading="true" mode="widthFix" width="100%"
 					height="auto"></u--image>
 			</button>
+			<!-- #ifndef MP-KUAISHOU -->
 			<button class="wlapp-item" open-type="contact">
 				<u--image src="/static/img/showkefu.png" :showLoading="true" mode="widthFix" width="100%" height="auto">
 				</u--image>
 			</button>
+			<!-- #endif -->
 		</view>
 		<showImg ref="showImg"></showImg>
 	</view>

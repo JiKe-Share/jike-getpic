@@ -52,7 +52,10 @@
         }
     ],
 	"globalStyle": {
+		 // #ifndef MP-TOUTIAO
 		"navigationStyle": "custom",
+		// #endif 
+		
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "即刻取图",
 		"navigationBarBackgroundColor": "#F8F8F8",

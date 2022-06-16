@@ -1,7 +1,11 @@
 <template>
 	<view>
+		<!-- #ifndef MP-TOUTIAO -->
 		<uniNavBar fixed="2"></uniNavBar>
-		<view v-if="images&&images.length!=0" :style="{paddingTop:topx}">
+			<!-- #endif 	 -->
+		
+		<view v-if="itvideo"><video class="dtbz" :src="itvideo" :autoplay="true" object-fit="cover" ></video></view>
+		<view v-else-if="images&&images.length!=0" :style="{paddingTop:topx}">
 			<view v-if="images.length==1">
 				<u--image :showMenuByLongpress="false" :src="images[0]" :fade="true" width="100%" mode="widthFix"
 					height="auto">
@@ -13,11 +17,22 @@
 				</u-swiper>
 			</view>
 		</view>
+		
+		
 		<u-empty icon="/static/img/noimg.png" v-else-if="!loads" marginTop="150" iconSize="100" textSize="16"
 			textColor="#9a9a9a" text="这张图不见了,联系客服解决吧">
 		</u-empty>
 		<view v-if="!loads">
-			<view class="control slide-in-bottom" v-if="images&&images.length!=0">
+			<view class="control slide-in-bottom" v-if="itvideo">
+				<button class="control-center contorl-v  bg-gradual-red" @tap="savevideoAD">
+					<u-icon color="#ffffff" labelColor="#ffffff" :label="downtext" size="25"
+						:name="videoAd?'play-circle':'photo'"></u-icon>
+				</button>
+				<button open-type="share" class="control-right contorl-v bg-gradual-green">
+					<u-icon color="#ffffff" size="30" name="share-square"></u-icon>
+				</button>
+			</view>
+			<view class="control slide-in-bottom" v-else-if="images&&images.length!=0">
 				<button class="control-left contorl-v bg-grey" v-if="Vague==1" @tap="savearrimg(dimgs)">
 					<u-icon size="25" color="#ffffff" space="0" label="模糊下载" name="photo" labelColor="#ffffff"></u-icon>
 				</button>
@@ -55,7 +70,8 @@
 				showkfwx: false,
 				loads: true,
 				videoAd: '',
-				images: []
+				images: [],
+				itvideo:''
 			}
 		},
 		onLoad(o) {
@@ -112,9 +128,13 @@
 						id: id
 					}
 				});
-				if (ret.code == 1) {
-					var data = ret.data;
-					console.log(data)
+				var data = ret.data;
+				if(data.video){
+					this.downtext = "下载动态壁纸";
+					this.itvideo = data.video;
+					that.loads = false;
+				}
+				else {
 					if (data.images.length > 1) {
 						this.downtext = "下载所有高清图"
 					}
@@ -141,31 +161,14 @@
 						that.loads = false;
 					}
 				}
+				
 			},
 			savehimg() {
 				let that = this;
+				
 				if (that.videoAd) {
-					that.videoAd.show().catch(() => {
-						that.videoAd.load()
-							.then(() => that.videoAd.show())
-							.catch(err => {
-								console.log('激励视频 广告显示失败')
-								that.savearrimg(that.images)
-							})
-					})
-				} else {
-					that.savearrimg(that.images)
-				}
-			},
-			//初始化激励视频广告组件
-			CreateAd() {
-				let that = this;
-				console.log(that.Rewarded)
-				if (uni.createRewardedVideoAd) {
-					that.videoAd = uni.createRewardedVideoAd({
-						adUnitId: that.Rewarded
-					})
-					that.videoAd.onLoad(() => {})
+					that.videoAd.offError();
+					that.videoAd.offClose();
 					that.videoAd.onClose((res) => {
 						if (res && res.isEnded) {
 							that.savearrimg(that.images)
@@ -177,11 +180,63 @@
 						}
 					})
 					that.videoAd.onError((err) => {
-						// uni.showToast({
-						// 	icon: 'none',
-						// 	title: "暂时无广告，请稍后再试"
-						// })
+						
 					})
+					that.videoAd.show().catch(() => {
+						that.videoAd.load()
+							.then(() => that.videoAd.show())
+							.catch(err => {
+								console.log(err)
+								console.log('激励视频 广告显示失败')
+								that.savearrimg(that.images)
+							})
+					})
+				} else {
+					that.savearrimg(that.images)
+				}
+			},
+			// 保存视频
+			savevideoAD(){
+				var that = this;
+				
+				if (that.videoAd) {
+					that.videoAd.offError();
+					that.videoAd.offClose();
+					that.videoAd.onClose((res) => {
+						if (res && res.isEnded) {
+							that.savevideo(that.itvideo)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: "保存失败，中途关闭广告！"
+							})
+						}
+					})
+					that.videoAd.onError((err) => {
+						
+					})
+					that.videoAd.show().catch(() => {
+						that.videoAd.load()
+							.then(() => that.videoAd.show())
+							.catch(err => {
+								console.log(err)
+								that.savevideo(that.itvideo)
+							})
+					})
+				} else {
+					that.savevideo(that.itvideo)
+				}
+			},
+			//初始化激励视频广告组件
+			CreateAd() {
+				let that = this;
+				console.log(that.Rewarded)
+				if (uni.createRewardedVideoAd) {
+					that.videoAd = uni.createRewardedVideoAd({
+						adUnitId: that.Rewarded
+					})
+					that.videoAd.onLoad(() => {})
+					
 				} else {
 					that.videoAd = ''
 				}

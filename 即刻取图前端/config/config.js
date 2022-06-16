@@ -15,6 +15,7 @@ module.exports = (vm) => {
 	uni.$u.http.interceptors.request.use((config) => { // 可使用async await 做异步操作
 		// 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
 		config.data = config.data || {}
+		console.log(config)
 		config.header['Content-Type'] = 'application/x-www-form-urlencoded'
 		// console.log(uni.getStorageSync('storage_key'))
 		// 根据custom参数中配置的是否需要token，添加对应的请求头

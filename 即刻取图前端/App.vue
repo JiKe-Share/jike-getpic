@@ -16,7 +16,6 @@
 	@import "@/uni_modules/uview-ui/index.scss";
 	@import "static/colorui/main.css";
 	@import "static/colorui/icon.css";
-
 	.slide-in-bottom {
 		animation: slide-in-bottom 1.2s ease
 	}

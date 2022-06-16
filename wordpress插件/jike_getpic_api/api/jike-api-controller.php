@@ -14,6 +14,15 @@ class JikeApiController extends WP_REST_Controller{
 	    $this->namespace = 'jike/api/v1';
 	    $this->offset = $this->option_value('page-offset');
 	}
+	 public function jike_get_post_video($post_content){
+        preg_match_all('|<video.*?src=[\'"](.*?)[\'"].*?>|i', do_shortcode($post_content), $matches);
+        if($matches[1][0]){
+            $v = $matches[1][0];
+            return $v;
+        }else{
+            return false;
+        }
+    }
     public function jike_get_post_images($post_content){
         preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', do_shortcode($post_content), $matches);
         if($matches){
@@ -102,6 +111,7 @@ $matches[2][$key]=$this->hui_get_attachment_id_from_src(str_replace($this->optio
         $link = preg_replace('/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $link);
         return $this->jike_get_post_imageZ($wpdb->get_var("SELECT ID FROM {$wpdb->posts} WHERE guid='$link'"));
     }
+   
     // 获取文章图片中等图
     public function jike_get_post_imageZ($id) {
 	   return wp_get_attachment_image_src($id , 'medium')[0]; 

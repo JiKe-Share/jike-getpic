@@ -1,0 +1,32 @@
+{
+  "setting": {
+    "urlCheck": false
+  },
+  "appid": "tt7efb0846e1c5d9e601",
+  "projectname": "即刻取图",
+  "condition": {
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "id": 42478228,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": "",
+          "launchFrom": "",
+          "location": ""
+        },
+        {
+          "id": 1,
+          "name": "测试页",
+          "pathName": "pages/search/search",
+          "query": "key=文字控",
+          "scene": "",
+          "launchFrom": "",
+          "location": ""
+        }
+      ]
+    }
+  }
+}

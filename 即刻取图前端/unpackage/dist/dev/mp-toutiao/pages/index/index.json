@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-scroll-list": "/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list",
+    "u--text": "/uni_modules/uview-ui/components/u--text/u--text",
+    "u--image": "/uni_modules/uview-ui/components/u--image/u--image",
+    "pendant": "/components/Pendant/Pendant",
+    "bannerad": "/components/advertisement/bannerad",
+    "interad": "/components/advertisement/interad"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/post/post",
+    "pages/class/class",
+    "pages/tags/tags",
+    "pages/web/web",
+    "pages/search/search"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "即刻取图",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "pendant": "/components/Pendant/Pendant",
+    "interad": "/components/advertisement/interad",
+    "bannerad": "/components/advertisement/bannerad",
+    "show-img": "/components/show-img/show-img"
+  }
+}

@@ -1,0 +1,1 @@
+<view><block tt:if="{{Banner}}"><view class="ad-class" style="{{('margin:'+marginTop+' 0 '+marginBottom+';')}}"><ad style="{{('width:'+adw+'!important;')}}" type="banner video large lImg rImg" unit-id="{{Banner}}"></ad></view></block></view>
